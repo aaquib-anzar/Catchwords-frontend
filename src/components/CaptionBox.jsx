@@ -1,15 +1,26 @@
 ("use client");
-import React from "react";
-import { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FaCopy } from "react-icons/fa6";
 import { GlowingEffect } from "./ui/glowing-effect";
+import { AuthContext } from "../utils/AuthContext";
+import axios from "axios";
 
 export function CaptionBox({ caption }) {
+  const{user} = useContext(AuthContext)
   const [copied, setCopied] = useState(false);
-  const handleClick = () => {
-    navigator.clipboard.writeText(caption);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleClick = async () => {
+    try {
+      navigator.clipboard.writeText(caption);
+      setCopied(true);
+      {user?.email && await axios.post(
+        "http://localhost:5000/savecaption",
+        { email:user?.email, caption },
+        { withCredentials: true }
+      )};
+      setTimeout(() => setCopied(false), 2000);
+    } catch (error) {
+      alert("Something went wrong");
+    }
   };
   const GridItem = ({ description }) => {
     return (

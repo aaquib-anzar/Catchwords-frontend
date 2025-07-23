@@ -8,12 +8,13 @@ import axios from "axios";
 export function CaptionBox({ caption }) {
   const{user} = useContext(AuthContext)
   const [copied, setCopied] = useState(false);
+  const baseURL = import.meta.env.VITE_API_BASE_URL
   const handleClick = async () => {
     try {
       navigator.clipboard.writeText(caption);
       setCopied(true);
       {user?.email && await axios.post(
-        "https://catchwords-backend.onrender.com//savecaption",
+        `${baseURL}/savecaption`,
         { email:user?.email, caption },
         { withCredentials: true }
       )};

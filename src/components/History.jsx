@@ -10,11 +10,12 @@ function History() {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
+  const baseURL = import.meta.env.VITE_API_BASE_URL
   //const navigate = useNavigate()
   useEffect(() => {
     const fetchCaptions = async () => {
       try {
-        const response = await axios.get("https://catchwords-backend.onrender.com/getcaption", {
+        const response = await axios.get(`${baseURL}/getcaption`, {
           params: { email: user?.email },
           withCredentials: true,
         });

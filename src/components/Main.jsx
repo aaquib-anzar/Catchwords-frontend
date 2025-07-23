@@ -13,13 +13,13 @@ function Main({ setCaption }) {
   const [length, setLength] = useState("");
   const [language, setLanguage] = useState("")
   const [loading, setLoading] = useState(false);
-
+  const baseURL = import.meta.env.VITE_API_BASE_URL
   const handleGenerate = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
       const res = await axios.post(
-        "https://catchwords-backend.onrender.com/generate",
+        `${baseURL}/generate`,
         {
           type,
           tone,

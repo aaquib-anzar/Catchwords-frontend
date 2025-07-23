@@ -13,7 +13,7 @@ export function CaptionBox({ caption }) {
       navigator.clipboard.writeText(caption);
       setCopied(true);
       {user?.email && await axios.post(
-        "http://localhost:5000/savecaption",
+        "https://catchwords-backend.onrender.com//savecaption",
         { email:user?.email, caption },
         { withCredentials: true }
       )};

@@ -19,7 +19,7 @@ function Main({ setCaption }) {
     try {
       setLoading(true);
       const res = await axios.post(
-        "http://localhost:5000/generate",
+        "https://catchwords-backend.onrender.com/generate",
         {
           type,
           tone,

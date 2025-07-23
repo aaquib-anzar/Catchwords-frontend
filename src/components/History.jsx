@@ -3,7 +3,7 @@ import axios from "axios";
 import { MdDelete } from "react-icons/md";
 import { FaCopy } from "react-icons/fa6";
 import { AuthContext } from "../utils/AuthContext";
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 
 function History() {
   const { user } = useContext(AuthContext);
@@ -14,7 +14,7 @@ function History() {
   useEffect(() => {
     const fetchCaptions = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/getcaption", {
+        const response = await axios.get("https://catchwords-backend.onrender.com/getcaption", {
           params: { email: user?.email },
           withCredentials: true,
         });
@@ -48,7 +48,7 @@ function History() {
           {!loading && history.length > 0 && (
             <ul className="list-disc pl-5">
               {history.map((caption, index) => (
-                <li key={index} className="mb-2 flex items-center justify-between gap-2">
+                <li data-testid="caption-item" key={index} className="mb-2 flex items-center justify-between gap-2">
                 <span className="flex-1">{caption}</span>
                 <div className="flex gap-2">
                   <FaCopy className="cursor-pointer" onClick={() => navigator.clipboard.writeText(caption)}/>
@@ -60,9 +60,10 @@ function History() {
           )}
         </>
       ) : (
-        <div>
+        <div className="relative z-10">
           No Interactions Yet{" "}
           <NavLink
+            data-testid = "go-back-link"
             className="underline text-blue-400"
             to = "/"
           >

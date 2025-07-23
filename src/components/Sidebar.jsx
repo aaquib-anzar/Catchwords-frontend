@@ -1,6 +1,5 @@
 // components/Sidebar.jsx
 import { FaTimes } from "react-icons/fa";
-import axios from "axios";
 import { useContext, useState } from "react";
 import {
   signInWithPopup,
@@ -27,7 +26,7 @@ const Sidebar = ({ open, onClose }) => {
   const handleLogout = async (req, res) => {
     try {
       await auth.signOut();
-      res.redirect("http://localhost:5173");
+      navigate("/");
     } catch (error) {
       console.error("Sign out error:", error);
     }

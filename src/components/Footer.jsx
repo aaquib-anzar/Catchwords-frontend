@@ -9,7 +9,7 @@ function Footer() {
 
         {/* Center - GitHub */}
         <a
-          href="https://github.com/aaquib-anzar"
+          href="https://github.com/aaquib-anzar/Catchwords-frontend"
           target="_blank"
           rel="noopener noreferrer"
           className="text-sm hover:underline"

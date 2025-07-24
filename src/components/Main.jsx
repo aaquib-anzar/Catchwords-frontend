@@ -41,93 +41,154 @@ function Main({ setCaption }) {
       setLoading(false);
     }
   };
+
+  // Shared classes for form elements
+  const inputClasses = "w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-4 text-sm text-gray-900 dark:text-gray-100 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-all duration-200 hover:border-gray-400 dark:hover:border-gray-500";
+
   return (
     <>
-      <form onSubmit={handleGenerate}>
-        <textarea
-          value={keywords}
-          onChange={(e) => setKeywords(e.target.value)}
-          placeholder="Enter keywords to be included in caption"
-          rows={3}
-          className="w-full resize-none rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 text-sm text-gray-900 dark:text-gray-100 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-500"
-        />
-        <select
-          value={type}
-          onChange={(e) => setType(e.target.value)}
-          className="p-2 m-2 rounded bg-gray-100 dark:bg-gray-800 text-sm"
-        >
-          <option disabled value="">
-            Type
-          </option>
-          <option value="Travel">Travel</option>
-          <option value="Food">Food</option>
-          <option value="Selfie">Selfie</option>
-          <option value="Fitness">Fitness</option>
-          <option value="Fashion">Fashion</option>
-        </select>
+      <form onSubmit={handleGenerate} className="space-y-6">
+        {/* Keywords Textarea */}
+        <div className="space-y-2">
+          <label htmlFor="keywords" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            Keywords
+          </label>
+          <textarea
+            id="keywords"
+            value={keywords}
+            onChange={(e) => setKeywords(e.target.value)}
+            placeholder="Enter keywords to be included in caption"
+            rows={3}
+            className={`${inputClasses} resize-none`}
+          />
+        </div>
 
-        <select
-          value={tone}
-          onChange={(e) => setTone(e.target.value)}
-          className="p-2 m-2 rounded bg-gray-100 dark:bg-gray-800 text-sm"
-        >
-          <option disabled value="">
-            Tone
-          </option>
-          <option value="Funny">Funny</option>
-          <option value="Romantic">Romantic</option>
-          <option value="Motivation">Motivational</option>
-          <option value="Sarcastic">Sarcastic</option>
-          <option value="Chill">Chill</option>
-        </select>
+        {/* Dropdowns Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+          {/* Type Dropdown */}
+          <div className="space-y-2">
+            <label htmlFor="type" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              Type
+            </label>
+            <select
+              id="type"
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+              className={inputClasses}
+            >
+              <option disabled value="">
+                Select Type
+              </option>
+              <option value="Travel">Travel</option>
+              <option value="Food">Food</option>
+              <option value="Selfie">Selfie</option>
+              <option value="Fitness">Fitness</option>
+              <option value="Fashion">Fashion</option>
+            </select>
+          </div>
 
-        <select
-          value={emoji}
-          onChange={(e) => setEmoji(e.target.value)}
-          className="p-2 rounded bg-gray-100 dark:bg-gray-800 text-sm"
-        >
-          <option disabled value="">
-            Emoji's
-          </option>
-          <option value="None">None</option>
-          <option value="Minimal">Minimal</option>
-          <option value="Heavy">Heavy</option>
-        </select>
+          {/* Tone Dropdown */}
+          <div className="space-y-2">
+            <label htmlFor="tone" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              Tone
+            </label>
+            <select
+              id="tone"
+              value={tone}
+              onChange={(e) => setTone(e.target.value)}
+              className={inputClasses}
+            >
+              <option disabled value="">
+                Select Tone
+              </option>
+              <option value="Funny">Funny</option>
+              <option value="Romantic">Romantic</option>
+              <option value="Motivation">Motivational</option>
+              <option value="Sarcastic">Sarcastic</option>
+              <option value="Chill">Chill</option>
+            </select>
+          </div>
 
-        <select
-          value={length}
-          onChange={(e) => setLength(e.target.value)}
-          className="p-2  m-2 rounded bg-gray-100 dark:bg-gray-800 text-sm"
-        >
-          <option disabled value="">
-            Length
-          </option>
-          <option value="Short">Short</option>
-          <option value="Medium">Medium</option>
-          <option value="Long">Long</option>
-        </select>
+          {/* Emoji Dropdown */}
+          <div className="space-y-2">
+            <label htmlFor="emoji" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              Emojis
+            </label>
+            <select
+              id="emoji"
+              value={emoji}
+              onChange={(e) => setEmoji(e.target.value)}
+              className={inputClasses}
+            >
+              <option disabled value="">
+                Select Emojis
+              </option>
+              <option value="None">None</option>
+              <option value="Minimal">Minimal</option>
+              <option value="Heavy">Heavy</option>
+            </select>
+          </div>
 
+          {/* Length Dropdown */}
+          <div className="space-y-2">
+            <label htmlFor="length" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              Length
+            </label>
+            <select
+              id="length"
+              value={length}
+              onChange={(e) => setLength(e.target.value)}
+              className={inputClasses}
+            >
+              <option disabled value="">
+                Select Length
+              </option>
+              <option value="Short">Short</option>
+              <option value="Medium">Medium</option>
+              <option value="Long">Long</option>
+            </select>
+          </div>
 
-        <select
-          value={language}
-          onChange={(e) => setLanguage(e.target.value)}
-          className="p-2  m-2 rounded bg-gray-100 dark:bg-gray-800 text-sm"
-        >
-          <option disabled value="">
-            Language
-          </option>
-          <option value="Hindi">Hindi</option>
-          <option value="English">English</option>
-        </select>
+          {/* Language Dropdown */}
+          <div className="space-y-2">
+            <label htmlFor="language" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              Language
+            </label>
+            <select
+              id="language"
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+              className={inputClasses}
+            >
+              <option disabled value="">
+                Select Language
+              </option>
+              <option value="Hindi">Hindi</option>
+              <option value="English">English</option>
+            </select>
+          </div>
+        </div>
 
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="p-2 m-2 bg-gray-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
-        >
-          {loading ? <AiOutlineLoading3Quarters /> : <RiAiGenerate2 />}
-        </button>
+        {/* Generate Button */}
+        <div className="flex justify-center pt-4">
+          <button
+            type="submit"
+            disabled={loading}
+            className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-medium text-sm rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {loading ? (
+              <>
+                <AiOutlineLoading3Quarters className="animate-spin -ml-1 mr-2 h-4 w-4" />
+                Generating...
+              </>
+            ) : (
+              <>
+                <RiAiGenerate2 className="-ml-1 mr-2 h-4 w-4" />
+                Generate Caption
+              </>
+            )}
+          </button>
+        </div>
       </form>
     </>
   );

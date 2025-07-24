@@ -42,15 +42,15 @@ function Main({ setCaption }) {
     }
   };
 
-  // Shared classes for form elements
-  const inputClasses = "w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-4 text-sm text-gray-900 dark:text-gray-100 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-all duration-200 hover:border-gray-400 dark:hover:border-gray-500";
+  // Shared classes for form elements with neutral-800 background
+  const inputClasses = "w-full rounded-xl border border-neutral-600 bg-neutral-800 p-4 text-sm text-neutral-100 placeholder-neutral-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 hover:border-neutral-500";
 
   return (
     <>
       <form onSubmit={handleGenerate} className="space-y-6">
         {/* Keywords Textarea */}
         <div className="space-y-2">
-          <label htmlFor="keywords" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label htmlFor="keywords" className="block text-sm font-medium text-neutral-200">
             Keywords
           </label>
           <textarea
@@ -67,7 +67,7 @@ function Main({ setCaption }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
           {/* Type Dropdown */}
           <div className="space-y-2">
-            <label htmlFor="type" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label htmlFor="type" className="block text-sm font-medium text-neutral-200">
               Type
             </label>
             <select
@@ -89,7 +89,7 @@ function Main({ setCaption }) {
 
           {/* Tone Dropdown */}
           <div className="space-y-2">
-            <label htmlFor="tone" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label htmlFor="tone" className="block text-sm font-medium text-neutral-200">
               Tone
             </label>
             <select
@@ -111,7 +111,7 @@ function Main({ setCaption }) {
 
           {/* Emoji Dropdown */}
           <div className="space-y-2">
-            <label htmlFor="emoji" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label htmlFor="emoji" className="block text-sm font-medium text-neutral-200">
               Emojis
             </label>
             <select
@@ -131,7 +131,7 @@ function Main({ setCaption }) {
 
           {/* Length Dropdown */}
           <div className="space-y-2">
-            <label htmlFor="length" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label htmlFor="length" className="block text-sm font-medium text-neutral-200">
               Length
             </label>
             <select
@@ -151,7 +151,7 @@ function Main({ setCaption }) {
 
           {/* Language Dropdown */}
           <div className="space-y-2">
-            <label htmlFor="language" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label htmlFor="language" className="block text-sm font-medium text-neutral-200">
               Language
             </label>
             <select

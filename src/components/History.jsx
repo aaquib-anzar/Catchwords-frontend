@@ -40,10 +40,11 @@ function History() {
 
   const handleDelete = async (caption) => {
     try {
-      await axios.delete(`${baseURL}/deletecaption`, {
-        data: { email: user?.email, caption },
-        withCredentials: true,
-      });
+      await axios.post(
+        `${baseURL}/deletecaption`,
+        { email: user?.email, caption },
+        { withCredentials: true }
+      );
       setHistory((prev) => prev.filter((item) => item !== caption));
       toast.success("Caption deleted.");
     } catch (error) {

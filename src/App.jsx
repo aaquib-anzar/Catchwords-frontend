@@ -7,7 +7,6 @@ import { StarsBackground } from "./components/ui/stars-background";
 import Home from "./components/Home.jsx";
 import Footer from "./components/Footer";
 import { ToastContainer } from "react-toastify";
-import { Analytics } from "@vercel/analytics/react"
 function App() {
   const History = lazy(() => import("./components/History"));
   return (
@@ -40,7 +39,7 @@ function App() {
           }
         />
       </Routes>
-      <Analytics/>
+
       {/* Footer */}
       <Footer />
     </div>

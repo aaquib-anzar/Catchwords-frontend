@@ -14,7 +14,7 @@ function Home() {
       </h1>
 
       {/* Caption Generator */}
-      <div className="w-full max-w-2xl bg-white dark:bg-gray-900 rounded-xl shadow-md p-6">
+      <div className="w-full max-w-2xl bg-neutral-800 dark:bg-gray-900 rounded-xl shadow-md p-6">
         <Main setCaption={setCaption} />
       </div>
 

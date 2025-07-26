@@ -13,7 +13,7 @@ const Header = () => {
     <>
       <header className="fixed top-0 left-0 w-full z-50 px-6 py-4 backdrop-blur-md text-white flex items-center justify-between shadow-md">
         <NavLink to = "/"className="text-2xl font-bold tracking-wide"><ColourfulText text="Catchword.ai" /></NavLink>
-        <button onClick={() => setSidebarOpen(true)}>
+        <button onClick={() => setSidebarOpen(true)} >
           <FaBars className="text-2xl" />
         </button>
       </header>

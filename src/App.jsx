@@ -6,6 +6,7 @@ import { ShootingStars } from "./components/ui/shooting-stars";
 import { StarsBackground } from "./components/ui/stars-background";
 import Home from "./components/Home.jsx";
 import Footer from "./components/Footer";
+import { ToastContainer } from "react-toastify";
 function App() {
   const History = lazy(() => import("./components/History"));
   return (
@@ -16,6 +17,17 @@ function App() {
 
       {/* Fixed Header */}
       <Header />
+      <ToastContainer
+      position="top-right"
+      autoClose={2000}
+      hideProgressBar={false}
+      newestOnTop={true}
+      closeOnClick
+      pauseOnFocusLoss={false}
+      draggable
+      pauseOnHover
+      theme="dark"
+    />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route

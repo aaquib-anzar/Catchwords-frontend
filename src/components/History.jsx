@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { MdDelete } from "react-icons/md";
-import { FaCopy } from "react-icons/fa6";
 import { AuthContext } from "../utils/AuthContext";
 import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function History() {
   const { user } = useContext(AuthContext);
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
-  const baseURL = import.meta.env.VITE_API_BASE_URL
-  //const navigate = useNavigate()
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
+
   useEffect(() => {
     const fetchCaptions = async () => {
       try {
@@ -27,7 +27,7 @@ function History() {
         }
       } catch (error) {
         console.error("Failed to fetch history", error);
-        setMessage("Something went wrong.");
+        toast.error("Something went wrong.");
       } finally {
         setLoading(false);
       }
@@ -38,6 +38,21 @@ function History() {
     }
   }, [user]);
 
+  const handleDelete = async (caption) => {
+    try {
+      const response = await axios.delete(`${baseURL}/deletecaption`, {
+        data: { email: user?.email, caption },
+        withCredentials: true,
+      });
+      console.log(response.data)
+      setHistory((prev) => prev.filter((item) => item !== caption));
+      toast.success("Caption deleted.");
+    } catch (error) {
+      console.error("Failed to delete the caption", error);
+      toast.error("Failed to delete.");
+    }
+  };
+
   return (
     <div className="pt-24 p-6 text-white">
       <h1 className="text-2xl font-bold mb-4">Your Caption History</h1>
@@ -47,15 +62,19 @@ function History() {
           {loading && <p>Loading...</p>}
           {!loading && message && <p>{message}</p>}
           {!loading && history.length > 0 && (
-            <ul className="list-disc pl-5">
+            <ul className="space-y-2">
               {history.map((caption, index) => (
-                <li data-testid="caption-item" key={index} className="mb-2 flex items-center justify-between gap-2">
-                <span className="flex-1">{caption}</span>
-                <div className="flex gap-2">
-                  <FaCopy className="cursor-pointer" onClick={() => navigator.clipboard.writeText(caption)}/>
-                  <MdDelete className="cursor-pointer" />
-                </div>
-              </li>              
+                <li
+                  key={index}
+                  data-testid="caption-item"
+                  className="flex items-center justify-between gap-2 bg-neutral-800 px-4 py-2 rounded-md relative z-10"
+                >
+                  <span className="flex-1 break-words">{caption}</span>
+                  <MdDelete
+                    className="cursor-pointer text-red-400 hover:text-red-300 transition"
+                    onClick={() => handleDelete(caption)}
+                  />
+                </li>
               ))}
             </ul>
           )}
@@ -64,9 +83,9 @@ function History() {
         <div className="relative z-10">
           No Interactions Yet{" "}
           <NavLink
-            data-testid = "go-back-link"
+            data-testid="go-back-link"
             className="underline text-blue-400"
-            to = "/"
+            to="/"
           >
             Go Back
           </NavLink>

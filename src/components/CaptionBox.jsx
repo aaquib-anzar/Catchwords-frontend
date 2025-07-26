@@ -4,25 +4,36 @@ import { FaCopy } from "react-icons/fa6";
 import { GlowingEffect } from "./ui/glowing-effect";
 import { AuthContext } from "../utils/AuthContext";
 import axios from "axios";
+import { TypeAnimation } from "react-type-animation";
+import { GiSaveArrow } from "react-icons/gi";
+import { toast } from 'react-toastify';
 
 export function CaptionBox({ caption }) {
-  const{user} = useContext(AuthContext)
-  const [copied, setCopied] = useState(false);
-  const baseURL = import.meta.env.VITE_API_BASE_URL
-  const handleClick = async () => {
+  const { user } = useContext(AuthContext);
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
+  const handleCopy = () => {
     try {
       navigator.clipboard.writeText(caption);
-      setCopied(true);
-      {user?.email && await axios.post(
-        `${baseURL}/savecaption`,
-        { email:user?.email, caption },
-        { withCredentials: true }
-      )};
-      setTimeout(() => setCopied(false), 2000);
+      toast.success("Copied to clipboard.")
+      
     } catch (error) {
-      alert("Something went wrong");
+      console.error("Handle copy error", error.message)
+      toast.error("Something went wrong");
     }
   };
+  const handleSave = async() => {
+    try {
+      if(user?.email){
+        const res = await axios.post(`${baseURL}/savecaption`,{email:user?.email, caption},{withCredentials:true})
+        toast.success(res.data.message)
+      }else{
+        toast.success("Login to save the caption")
+      }
+    } catch (error) {
+      console.error("Save copy error", error.message)
+      toast.error("Something went wrong")
+    }
+  }
   const GridItem = ({ description }) => {
     return (
       <li className="list-none">
@@ -41,20 +52,23 @@ export function CaptionBox({ caption }) {
             {/* Text and Copy Button in one row */}
             <div className="flex items-start justify-between">
               <h2 className="text-sm text-white md:text-base dark:text-neutral-400">
-                {description}
+                <TypeAnimation
+                  sequence={[description, Infinity]}
+                  speed={70}
+                  cursor={false}
+                />
               </h2>
 
-              <div className="ml-4 w-fit rounded-lg border border-gray-600 p-2 bg-black/50 backdrop-blur-md">
+              <div className="ml-4 w-fit rounded-lg border border-gray-600 p-2 bg-black/50 backdrop-blur-md flex gap-2">
                 <button
-                  onClick={handleClick}
-                  disabled={copied}
-                  className={`h-4 w-4 text-white dark:text-neutral-400 transition-opacity ${
-                    copied
-                      ? "opacity-50 cursor-not-allowed"
-                      : "hover:opacity-80"
-                  }`}
+                  onClick={handleCopy}
+                  className= "p-2 text-white dark:text-neutral-400 transition-opacity rounded-md hover:opacity-80"
                 >
-                  {copied ? <FaCopy /> : <FaCopy />}
+                    <FaCopy className="h-4 w-4" />
+                </button>
+
+                <button onClick = {handleSave}className="p-2 text-white dark:text-neutral-400 hover:opacity-80 transition-opacity rounded-md">
+                  <GiSaveArrow className="h-4 w-4" />
                 </button>
               </div>
             </div>
@@ -66,10 +80,13 @@ export function CaptionBox({ caption }) {
 
   return (
     // Grid Wrapper
+    <>
     <div className="max-w-4xl mx-auto px-4">
       <ul className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] auto-rows-auto gap-4">
         <GridItem description={caption} />
       </ul>
     </div>
+   
+    </>
   );
 }

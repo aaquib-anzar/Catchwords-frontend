@@ -45,3 +45,23 @@ npm install
 ```
 
 ### 3. Create .env file
+
+### 4. Start the development server
+```bash
+npm run dev
+```
+
+---
+
+## 🖼️ Screenshots
+
+> Coming soon
+
+---
+
+## 👨‍💻 Author
+
+**Aaquib Anzar**
+- Portfolio: [aaquib.vercel.app](https://aaquib.vercel.app)
+- GitHub: [@aaquib-anzar](https://github.com/aaquib-anzar)
+- LinkedIn: [aaquib-anzar](https://linkedin.com/in/aaquib-anzar-519771170)

@@ -1,16 +1,47 @@
-<<<<<<< HEAD
-# Catchywords-frontend
-=======
-# React + Vite
+# 🎯 Catchwords.AI — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+AI-powered social media caption generator. Create optimized captions for Instagram, Twitter, LinkedIn and more — with full control over tone, language, and length.
 
-Currently, two official plugins are available:
+🌐 **Live Demo:** [catchwords-frontend-ecru.vercel.app](https://catchwords-frontend-ecru.vercel.app/)
+💻 **Backend Repo:** [Catchwords-backend](https://github.com/aaquib-anzar/Catchwords-backend)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
->>>>>>> first commit
+- 🤖 AI-powered caption generation
+- 📱 Supports multiple platforms — Instagram, Twitter, LinkedIn and more
+- 🎨 Customize tone (casual, professional, funny, inspirational)
+- 🌍 Multi-language support
+- 📏 Control caption length
+- 🔐 JWT based authentication
+- 📝 Caption history saved per user
+- 📱 Fully responsive UI
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** React
+- **Styling:** Tailwind CSS
+- **State Management:** Redux
+- **HTTP Client:** Axios
+- **Build Tool:** Vite
+- **Deployment:** Vercel
+
+---
+
+## ⚙️ Getting Started
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/aaquib-anzar/Catchwords-frontend.git
+cd Catchwords-frontend
+```
+
+### 2. Install dependencies
+```bash
+npm install
+```
+
+### 3. Create .env file
